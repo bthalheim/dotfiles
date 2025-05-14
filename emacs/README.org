@@ -1,0 +1,135 @@
+#+TITLE: Emacs Configurations
+
+A repo of various emacs configurations and environments. Including some custom
+codes and automation paths.
+
+* Summary
+
+Emacs configuration repo for working configurations and building Modules. Also
+testing magit interfacing.
+
+General Commands And Reference:
++ ~C-x o~ cycles panes.
++ Execute a custom config file with ~emacs -q -l config.el~
++ Tangle org files with ~C-c C-v t~
+
+** Goals:
++ Fully tangle-able configuration.
++ Prefer built in modules where possible to limit the need for external code
+  where needed.
++ Convert to using multiple org files tangled using import to modularize the
+  file. Generated file should maybe be cleaned after its created to make an init
+  file that can be reviewed and readable as needed.
++ Pull in external projects where it makes sense to local repos to maintain full
+  control of source, possibly even as far as creating local mirrors.
+  + [[https://www.reddit.com/r/emacs/comments/9fbe86/how_to_get_melpa_available_at_work_with_no_direct/][Reddit About Rsyncing package archives.]]
++ Add Journaling + Combine workflows with agenda.
+
+
+
+    
+** Index References
++ [[./envs/multi/master.org][Multi File Configurations Files]]
+
+  
+** Other Pacakges To Test
++ which key
++ orderless
++ marginalia
+  
+
+* Completion Frameworks
+
++ ido
++ ivy
++ consul
++ selectrum -> vertigo 
++ marginalia
++ orderless
+
+  
+
+
+* Magit Notes
+General notes on working with magit.
+
++ ~C-x g~  opens magit staus screen.
++ In status ~g~ for refreshing the status window. 
++ In status ~s~ for staging.
++ In status ~c~ for commit.
++ In status ~l l~ for reviewing log.
+
+** Goals
++ Maybe a common org format for repo readme.org files.
++ Org Export readme to markdown, some git repo hosts dont handle org mode (bitbucket).
++ Local git (gitea) for generic projects?
+
+
+* Project Notes
+
+** Goals
++ Command for auto stubbing a project in a folder.
++ Move away from projectile to see if the built in project software can fill the gap.
++ Investigate using the .projectile/.project file for extra config settings.
+  + Project tagging.
++ Add option to retire/archive old projects.
+  + Should continue to have some way of searching over older projects.
+  + Possibly an additional command to search just the archive sections.
++ Change Project Clean
+  + Close buffers not related to project when cahnging project.
+  + Search for files only inside the current project
+
+** Commands
++ projectile-discover-projects-in-search-directory
+
+** Common Bindings
++ C-c p p : Open Project
++ C-c p k : Kill all open project buffers
+
+* Org Mode Improvements
+
++ Auto continue bullets on enter ?
++ Better Conversion Possibilities.
+  + 
+
+
+* Emacsdaemon
+
++ [[https://github.com/winsw/winsw/releases][Winsw, Windows Service Runner]]
+
+
+emacsclientw.exe -n -c -a ""
+
+reload config
+#+begin_src 
+    emacsclient -e "(load-file \"~/.emacs.d/init.el\")"
+#+end_src
+
+Example Config 
+#+begin_src xml 
+  <service>
+    <id>Emacs-Daemon</id>
+    <name>Emacs Daemon</name>
+    <description>Runs emacs in daemon mode.</description>
+    <executable>C:\Program Files\Emacs\emacs-29.4\bin\emacs.exe</executable>
+    <arguments>--daemon</arguments>
+    <log mode="roll"></log>
+  </service>
+#+end_src
+
+
+Installation
+#+begin_src 
+emacs-daemon.exe install
+#+end_src
+
+
+
+* References
+
++ [[https://emacs.stackexchange.com/questions/10183/close-other-buffers-with-projectile][Code for closing all buffers not related to project.]]
++ [[https://emacs.stackexchange.com/questions/19176/manage-several-git-repositories-from-magit][Post about magit accross multiple repositories.]]
+
+
+
+

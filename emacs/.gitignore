@@ -1,0 +1,14 @@
+# Custom ignores for emacs files
+
+
+# Buffer files 
+*~
+.#* 
+\#*
+
+
+# Dont Sync Temp Files
+temp.*
+
+
+
