@@ -1,0 +1,51 @@
+
+#+TITLE: My Emacs Config
+#+PROPERTY: header-args:emacs-lisp :tangle yes
+
+* Package Setup 
+
+
+#+begin_src emacs-lisp
+
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+
+#+end_src
+
+
+* UI Tweaks
+
+#+begin_src emacs-lisp
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+#+end_src
+
+
+
+* Auto Tangle On Save
+
+#+begin_src emacs-lisp
+
+(defun my/org-babel-tangle-config ()
+  (when (string-equal (buffer-file-name)
+                      (expand-file-name "README.org" user-emacs-directory))    (org-babel-tangle)))
+
+(add-hook 'org-mode-hook
+          (lambda () (add-hook 'after-save-hook #'my/org-babel-tangle-config nil 'local)))     
+
+
+#+end_src
+
+
+
+
+
+
+
+
+
